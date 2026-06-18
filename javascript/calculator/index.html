@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohit's Calculator App</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#0f172a;
+        }
+
+        .calculator{
+            width:350px;
+            background:#1e293b;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .header{
+            text-align:center;
+            padding:20px;
+            color:white;
+        }
+
+        .display{
+            padding:20px;
+            background:#0f172a;
+        }
+
+        #expression{
+            width:100%;
+            padding:15px;
+            border:none;
+            outline:none;
+            border-radius:10px;
+            font-size:20px;
+            background:#334155;
+            color:white;
+        }
+
+        #result{
+            margin-top:15px;
+            text-align:right;
+            font-size:32px;
+            color:#38bdf8;
+            min-height:40px;
+        }
+
+        #history{
+            margin-top:10px;
+            text-align:right;
+            color:#94a3b8;
+            font-size:14px;
+            min-height:20px;
+        }
+
+        .buttons{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:10px;
+            padding:20px;
+        }
+
+        button{
+            padding:18px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:18px;
+            background:#334155;
+            color:white;
+        }
+
+        button:hover{
+            opacity:0.8;
+        }
+
+        .operator{
+            background:#0284c7;
+        }
+
+        .clear{
+            background:#dc2626;
+        }
+
+        .copy{
+            background:#7c3aed;
+        }
+
+        .equal{
+            background:#16a34a;
+        }
+
+        .wide{
+            grid-column:span 2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+
+    <div class="header">
+        <h1>Mohit's Calculator</h1>
+    </div>
+
+    <div class="display">
+        <input type="text" id="expression" placeholder="Enter expression">
+
+        <div id="result">0</div>
+
+        <div id="history"></div>
+    </div>
+
+    <div class="buttons">
+
+        <button class="clear" id="clearBtn">C</button>
+        <button id="backBtn">⌫</button>
+        <button class="copy" id="copyBtn">Copy</button>
+        <button class="operator" data-value="/">÷</button>
+
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button class="operator" data-value="*">×</button>
+
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button class="operator" data-value="-">−</button>
+
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button class="operator" data-value="+">+</button>
+
+        <button data-value="(">(</button>
+        <button data-value=")">)</button>
+        <button data-value=".">.</button>
+        <button class="equal" id="equalBtn">=</button>
+
+        <button class="wide" data-value="0">0</button>
+
+    </div>
+
+</div>
+
+<script>
+
+const expression = document.getElementById("expression");
+const result = document.getElementById("result");
+const history = document.getElementById("history");
+
+const valueButtons = document.querySelectorAll("[data-value]");
+const clearBtn = document.getElementById("clearBtn");
+const backBtn = document.getElementById("backBtn");
+const copyBtn = document.getElementById("copyBtn");
+const equalBtn = document.getElementById("equalBtn");
+
+valueButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        expression.value += button.dataset.value;
+
+        try{
+            result.textContent = eval(expression.value);
+        }
+        catch{
+            result.textContent = "...";
+        }
+
+    });
+
+});
+
+clearBtn.addEventListener("click", () => {
+
+    expression.value = "";
+    result.textContent = "0";
+    history.textContent = "";
+
+});
+
+backBtn.addEventListener("click", () => {
+
+    expression.value = expression.value.slice(0,-1);
+
+    if(expression.value === ""){
+        result.textContent = "0";
+        return;
+    }
+
+    try{
+        result.textContent = eval(expression.value);
+    }
+    catch{
+        result.textContent = "...";
+    }
+
+});
+
+equalBtn.addEventListener("click", () => {
+
+    try{
+
+        let answer = eval(expression.value);
+
+        history.textContent =
+            expression.value + " = " + answer;
+
+        result.textContent = answer;
+
+        expression.value = answer;
+
+    }
+    catch{
+        result.textContent = "Error";
+    }
+
+});
+
+copyBtn.addEventListener("click", () => {
+
+    navigator.clipboard.writeText(result.textContent);
+
+    alert("Result Copied!");
+
+});
+
+expression.addEventListener("keydown", (e) => {
+
+    if(e.key === "Enter"){
+        equalBtn.click();
+    }
+});
+
+</script>
+
+</body>
+</html>
+
