@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.card{
+    border: 2px solid black;
+    min-width: 300px;
+}
+.card img{
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #fff;
+    padding: 20px;
+}
+.card-content {
+    padding-left: 20px;
+}
+.card-content h1{
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #333;
+}
+.card-content p{
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 16px;
+}
+
+</style>
+<body>
+<div class="card-container">
+    
+</div>
+</body>
+<script> 
+const cardContainer = document.querySelector('.card-container');
+
+const fetchuser = async () => {
+    const res = await fetch('https://fakestoreapi.com/products');
+    const data = await res.json();
+
+    data.forEach(user => {
+        cardContainer.innerHTML += `
+        <div class="card">
+            <img src="${user.image ?? '/clock/html.png'}" alt="avatar">
+
+            <div class="card-content">
+                <h1>${user.title}</h1>
+                <p><strong>Price:</strong> ${user.price} $</p>
+                <p><strong></strong> ${user.description} </p>
+                <p><strong>Category:</strong> ${user.category}</p>
+            </div>
+        </div>`;
+    });
+};
+
+fetchuser();
+</script>
+
+</html>
