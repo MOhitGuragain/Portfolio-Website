@@ -106,6 +106,18 @@
             font-size: 1.1rem;
             letter-spacing: 1px;
         }
+        .footer{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    text-align:center;
+    color:white;
+    padding:15px 0;
+    background:rgba(0,0,0,0.15);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+}
 
         @media(max-width: 600px){
             .clock-container{
@@ -163,11 +175,11 @@
         updateClock();
         setInterval(updateClock, 1000);
     </script>
-
-</body>
-<footer>
+<footer class="footer">
     <p style="text-align:center; color:white; margin-top:20px;">
         &copy; 2026 Mohit Guragain. All rights reserved. The app is still in development phase.
     </p>
 </footer>
+</body>
+
 </html>
