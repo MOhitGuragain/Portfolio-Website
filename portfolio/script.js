@@ -35,3 +35,74 @@
 //     return (c *9/5)+32;
 // }
 // console.log(`${CelsiusToFahrenheit(37)}F`);
+
+// let x=1;
+// while(x <10){
+//     console.log(x);
+//     x++;
+// }
+// let x=1;
+// do {
+//     console.log("I can do it")
+//     x++;
+// } while (x<=10);
+
+
+// Conditional Statement
+// let day =Number(prompt("Enter day number"));
+// switch (day) {
+//     case 1:
+//         console.log("Sunday");
+//         break;
+//      case 2:
+//         console.log("Monday");
+//         break;
+//      case 3:
+//         console.log("Tuesday");
+//         break;
+//      case 4:
+//         console.log("Wednesday");
+//         break;
+//      case 5:
+//         console.log("Thursday");
+//         break;
+
+//     default:
+//         console.log("Invalid Day")
+//         break;
+// }
+
+// for(let i =0, j =10; i<=10; i++, j--){
+//     console.log(i ,j);
+// }
+
+// const fruits =["apple", "mango", "banana"];
+// const filteredArray = fruits.find((fruit)=>{
+//     return fruit.includes("v");
+// })
+
+// console.log(filteredArray);
+// for(fruit in fruits){
+//     console.log(fruits[fruit]);
+// }
+// for (let i = 0; i<fruits.length; i++) {
+//    console.log(fruits[i]); 
+// }
+// fruits.forEach((fruit) => {
+//     console.log(fruit);
+// });
+// const splicedFruits =fruits.splice(0 ,0, "litchi", "cherry");
+// console.log(fruits);
+
+// const MappedFruits = fruits.find((fruit)=>{
+//    return fruit.includes("o");
+// }
+// )
+// console.log(MappedFruits);
+
+// const num = [1,2,3,4,5];
+// const sumof= num.reduce((acc, sum) =>{
+//  result =acc + sum;
+//  return result
+// })
+// console.log(sumof)
